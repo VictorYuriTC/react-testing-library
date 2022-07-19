@@ -5,7 +5,7 @@ import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('3. FavoritePokemons page suite tests', () => {
   renderWithRouter(<FavoritePokemons />);
-  test('if "No favorite pokemon found" message is shown', () => {
+  test('"No favorite pokemon found" message is shown', () => {
     const message = screen.getByText('No favorite pokemon found');
     expect(message).toBeInTheDocument();
   });
