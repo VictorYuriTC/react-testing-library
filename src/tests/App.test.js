@@ -4,9 +4,10 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
-// João Nascimento helped me, since for some reason { pathname } was not working
+// João Nascimento helped me, since for some reason
+// { pathname } was not working when destructured
 
-describe('testing app', () => {
+describe('1. App suite tests', () => {
   const { history } = renderWithRouter(<App />);
   const homeLink = screen.getByRole('link', { name: /home/i });
   const aboutLink = screen.getByRole('link', { name: /about/i });

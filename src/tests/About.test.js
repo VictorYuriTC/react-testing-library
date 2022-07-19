@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { About } from '../pages';
 import renderWithRouter from '../helpers/renderWithRouter';
 
-describe('about page', () => {
+describe('2. About page suite tests', () => {
   const { history } = renderWithRouter(<About />);
   const img = screen.getByAltText(/pokédex/i);
 
