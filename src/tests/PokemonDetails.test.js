@@ -121,4 +121,19 @@ describe('PokemonDatails suite tests', () => {
 
     expect(pokemonSummary).toHaveTextContent(summary);
   });
+
+  it('should render the expected label for favorite pokemon checkbox', () => {
+    renderWithRouter(<App />);
+    const poisonButton = screen.getByRole('button', { name: /poison/i });
+    userEvent.click(poisonButton);
+
+    const pokemonDetails = screen.getByText(/more details/i);
+    userEvent.click(pokemonDetails);
+
+    const favoritePokemonCheckbox = screen.getByRole('checkbox');
+    userEvent.click(favoritePokemonCheckbox);
+
+    const favoritePokemonLabel = screen.getByText(/pokémon favoritado?/i);
+    expect(favoritePokemonLabel).toHaveTextContent(/pokémon favoritado/i);
+  });
 });
