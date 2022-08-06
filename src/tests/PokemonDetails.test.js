@@ -5,7 +5,7 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
-describe('PokemonDatails suite page', () => {
+describe('PokemonDatails suite tests', () => {
   const ekans = pokemons.find(({ name }) => name === 'Ekans');
 
   it('should render the respective pokemon name', () => {
