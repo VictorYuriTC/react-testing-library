@@ -1,37 +1,33 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Pokedex from '../pages/Pokedex';
-import { Button } from '../components';
 import renderWithRouter from '../helpers/renderWithRouter';
-import pokemons from '../data';
+import App from '../App';
 
 describe('Pokedex page suite tests', () => {
-  const pikachu = pokemons[0];
-  const { history } = renderWithRouter(<Pokedex
-    pokemons={ pokemons }
-    isPokemonFavoriteById={ pikachu.id }
-  />);
-  const button = screen.getByRole('button', { name: /próximo pokémon/i });
-  const pokemonName = screen.getByTestId('pokemon-name');
-
-  test('it contains a h2 with the expected text', () => {
-    const message = screen.getByRole('heading', {
-      level: 2, name: 'Encountered pokémons' });
-    expect(message).toBeInTheDocument();
+  it('should have a h2 with the expected text', () => {
+    renderWithRouter(<App />);
+    const h2 = screen.getByRole('heading', { level: 2 });
+    const h2ExpectedText = /encountered pokémons/i;
+    expect(h2).toHaveTextContent(h2ExpectedText);
   });
+  it('should show the next pokemon after clicking', () => {
+    renderWithRouter(<App />);
+    const button = screen.getByText(/próximo pokémon/i);
 
-  test('it shows the next pokemon on clicking on button', () => {
-    userEvent.click(button);
     expect(button).toBeInTheDocument();
   });
+  it('should have type filter buttons on screen', () => {
+    renderWithRouter(<App />);
+    const button = screen.getByRole('button', { name: 'Fire' });
 
-  test('it shows the first pokemon clicking on button when last pokemon is shown', () => {
+    userEvent.click(button);
+  });
+  it('should have a button to reset filtering', () => {
+    renderWithRouter(<App />);
+    const button = screen.getByText(/all/i);
+
+    expect(button).toBeInTheDocument();
+    userEvent.click(button);
   });
 });
-
-/*   global.fetch = jest.fn()
-    .mockResolvedValue({ json: jest.fn()
-      .mockResolvedValue({
-        id: 25,
-      }) }); */
