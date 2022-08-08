@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
-// João Nascimento helped me, since for some reason
+// João Andrade Jr. helped me, since for some reason
 // { pathname } was not working when destructured
 
 describe('1. App suite tests', () => {
